@@ -1,0 +1,5 @@
+[deployment]
+startCommand = "node dist/main"
+buildCommand = "npm ci && npm run build"
+healthcheckPath = "/api/v1/health"
+healthcheckTimeout = 300
