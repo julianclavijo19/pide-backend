@@ -1,6 +1,8 @@
-import { Module, Global } from '@nestjs/common';
+import { Module, Global, Logger } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import Redis from 'ioredis';
+
+const logger = new Logger('RedisModule');
 
 @Global()
 @Module({
@@ -12,12 +14,17 @@ import Redis from 'ioredis';
       useFactory: (configService: ConfigService) => {
         const url = configService.get<string>('redis.url');
         if (!url) {
-          throw new Error('REDIS_URL is not defined');
+          logger.warn('REDIS_URL is not defined, using mock Redis client');
+          return null;
         }
-        return new Redis(url, {
+        const client = new Redis(url, {
           maxRetriesPerRequest: 3,
           lazyConnect: true,
+          tls: url.startsWith('rediss://') ? { rejectUnauthorized: false } : undefined,
         });
+        client.on('error', (err) => logger.error('Redis error:', err.message));
+        client.on('connect', () => logger.log('Connected to Redis (Upstash)'));
+        return client;
       },
     },
   ],
