@@ -26,7 +26,7 @@ export class MenuItem {
   @Column({ type: 'decimal', precision: 10, scale: 2 })
   price!: number;
 
-  @Column({ name: 'image_url', nullable: true })
+  @Column({ type: 'varchar', name: 'image_url', nullable: true })
   imageUrl!: string | null;
 
   @Column({ name: 'is_available', default: true })

@@ -21,7 +21,7 @@ export class Driver {
   @Column({ name: 'vehicle_type', type: 'enum', enum: VehicleType, default: VehicleType.MOTORCYCLE })
   vehicleType!: VehicleType;
 
-  @Column({ name: 'license_url', nullable: true })
+  @Column({ type: 'varchar', name: 'license_url', nullable: true })
   licenseUrl!: string | null;
 
   @Column({ name: 'is_online', default: false })

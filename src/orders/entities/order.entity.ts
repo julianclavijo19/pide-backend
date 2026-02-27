@@ -25,7 +25,7 @@ export class Order {
   @Column({ name: 'restaurant_id' })
   restaurantId!: string;
 
-  @Column({ name: 'driver_id', nullable: true })
+  @Column({ type: 'uuid', name: 'driver_id', nullable: true })
   driverId!: string | null;
 
   @Column({ type: 'decimal', precision: 10, scale: 2, default: 0 })
@@ -57,7 +57,7 @@ export class Order {
   @Column({ type: 'jsonb', default: [] })
   timeline!: { status: string; timestamp: string }[];
 
-  @Column({ name: 'coupon_code', nullable: true })
+  @Column({ type: 'varchar', name: 'coupon_code', nullable: true })
   couponCode!: string | null;
 
   @ManyToOne(() => User, { onDelete: 'CASCADE' })

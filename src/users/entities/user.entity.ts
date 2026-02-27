@@ -20,7 +20,7 @@ export class User {
   @Column({ unique: true, length: 255 })
   email!: string;
 
-  @Column({ length: 20, nullable: true })
+  @Column({ type: 'varchar', length: 20, nullable: true })
   phone!: string | null;
 
   @Column({ name: 'password_hash' })
@@ -32,10 +32,10 @@ export class User {
   @Column({ name: 'is_active', default: true })
   isActive!: boolean;
 
-  @Column({ name: 'fcm_token', nullable: true })
+  @Column({ type: 'varchar', name: 'fcm_token', nullable: true })
   fcmToken!: string | null;
 
-  @Column({ name: 'refresh_token', nullable: true })
+  @Column({ type: 'varchar', name: 'refresh_token', nullable: true })
   refreshToken!: string | null;
 
   @OneToMany(() => Address, (address) => address.user, { cascade: true })

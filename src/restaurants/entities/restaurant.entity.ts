@@ -22,10 +22,10 @@ export class Restaurant {
   @Column({ type: 'text', nullable: true })
   description!: string | null;
 
-  @Column({ name: 'logo_url', nullable: true })
+  @Column({ type: 'varchar', name: 'logo_url', nullable: true })
   logoUrl!: string | null;
 
-  @Column({ name: 'cover_url', nullable: true })
+  @Column({ type: 'varchar', name: 'cover_url', nullable: true })
   coverUrl!: string | null;
 
   @Column({ name: 'owner_id' })
@@ -52,7 +52,7 @@ export class Restaurant {
   @Column({ name: 'commission_rate', type: 'decimal', precision: 5, scale: 2, default: 15.0 })
   commissionRate!: number;
 
-  @Column({ length: 255, nullable: true })
+  @Column({ type: 'varchar', length: 255, nullable: true })
   address!: string | null;
 
   @Column({ type: 'decimal', precision: 10, scale: 7, nullable: true })

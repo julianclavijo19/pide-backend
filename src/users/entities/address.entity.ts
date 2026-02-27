@@ -28,7 +28,7 @@ export class Address {
   @Column({ length: 255 })
   street!: string;
 
-  @Column({ length: 255, nullable: true })
+  @Column({ type: 'varchar', length: 255, nullable: true })
   details!: string | null;
 
   @ManyToOne(() => User, (user) => user.addresses, { onDelete: 'CASCADE' })
